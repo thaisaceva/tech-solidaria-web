@@ -6,7 +6,7 @@
 
 Plataforma web institucional desenvolvida para a **ONG Tech Solidária**, organização voltada à promoção da inclusão digital, letramento tecnológico e descarte sustentável de resíduos eletrônicos (E-Lixo) em comunidades vulneráveis.
 
-🔗 **Acesse o projeto publicado (GitHub Pages):** [https://thaisaceva.github.io/ong-tech-solidaria/](https://thaisaceva.github.io/ong-tech-solidaria/)
+🔗 **Acesse o projeto publicado (GitHub Pages):** [https://thaisaceva.github.io/tech-solidaria-web/](https://thaisaceva.github.io/tech-solidaria-web/)
 
 ---
 
