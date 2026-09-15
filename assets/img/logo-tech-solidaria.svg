@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80">
-  <rect width="100%" height="100%" fill="#ffffff" rx="10"/>
-  <circle cx="40" cy="40" r="25" fill="#0d6efd"/>
-  <path d="M30 40 L38 48 L50 32" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <text x="80" y="48" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#212529">Tech <tspan fill="#0d6efd">Solidária</tspan></text>
-</svg>
