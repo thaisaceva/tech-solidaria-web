@@ -3,56 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ONG Tech Solidária - Inclusão digital e reciclagem de eletrônicos.">
-    <title>Início | ONG Tech Solidária</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Plataforma institucional da ONG Tech Solidária voltada para inclusão digital e reciclagem sustentável de lixo eletrônico.">
+    <title>ONG Tech Solidária — Inclusão Digital e Sustentabilidade</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
     <header>
-        <img src="assets/img/logo-tech-solidaria.svg" alt="Logotipo ONG Tech Solidária" width="200" height="40">
-        <nav aria-label="Navegação Principal">
-            <ul>
-                <li><a href="index.html" aria-current="page">Início</a></li>
-                <li><a href="projetos.html">Projetos</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-            </ul>
-        </nav>
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/img/logo-tech-solidaria.svg" alt="Logotipo da ONG Tech Solidária" width="180" height="50">
+            </a>
+
+            <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menu de navegação">&#9776;</button>
+
+            <nav id="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="projetos.html">Projetos <span aria-hidden="true">▾</span></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="projetos.html#reconecta">Projeto Reconecta</a></li>
+                            <li><a href="projetos.html#letramento">Oficinas digitais</a></li>
+                            <li><a href="projetos.html#elixo">Estação E-Lixo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="cadastro.html" class="btn btn-primary">Seja Voluntário / Doe</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section aria-labelledby="t-hero">
-            <h1 id="t-hero">Inclusão Digital que Transforma Vidas</h1>
-            <p>Conectamos doações de computadores a pessoas em vulnerabilidade social.</p>
-            <figure>
-                <img src="assets/img/inclusao-digital.jpg" alt="Estudantes em oficina comunitária de informática" width="800" height="400">
-                <figcaption>Alunos em aula prática do curso de letramento digital.</figcaption>
-            </figure>
-            <a href="cadastro.html">Seja Voluntário</a>
-        </section>
-        <section aria-labelledby="t-sobre">
-            <h2 id="t-sobre">Sobre a ONG Tech Solidária</h2>
-            <p>Atuamos no recondicionamento de eletrônicos e oficinas gratuitas de TI.</p>
-            <article>
-                <h3>Nossa Missão</h3>
-                <p>Reduzir o lixo eletrônico e promover autonomia digital em comunidades carentes.</p>
-            </article>
-        </section>
-        <section aria-labelledby="t-impacto">
-            <h2 id="t-impacto">Nosso Impacto</h2>
+
+    <main class="grid-layout container">
+        <div class="content-main">
+            <section class="hero-section">
+                <span class="badge badge-primary">Iniciativa Social</span>
+                <h1>Tecnologia a serviço da inclusão social e sustentabilidade</h1>
+                <p>Promovemos o acesso às tecnologias digitais para jovens e adultos em situação de vulnerabilidade, transformando descarte eletrônico em oportunidades de futuro.</p>
+                
+                <figure>
+                    <img src="assets/img/inclusao-digital.jpg" alt="Alunos em oficina de informática" width="800" height="400">
+                    <figcaption>Oficina comunitária de montagem de computadores doados.</figcaption>
+                </figure>
+                
+                <a href="cadastro.html" class="btn btn-secondary">Quero Doar Equipamentos</a>
+            </section>
+
+            <section class="projects-preview">
+                <h2>Projetos em Destaque</h2>
+                <div class="card-grid">
+                    <article class="card-item card-project">
+                        <span class="badge badge-success">Ativo</span>
+                        <h3>Projeto Reconecta</h3>
+                        <p>Recuperação de computadores e doação para escolas públicas.</p>
+                        <a href="projetos.html#reconecta" class="btn btn-primary">Saiba mais</a>
+                    </article>
+
+                    <article class="card-item card-project">
+                        <span class="badge badge-warning">Inscrições Abertas</span>
+                        <h3>Letramento Digital</h3>
+                        <p>Cursos gratuitos de informática básica e navegação segura.</p>
+                        <a href="projetos.html#letramento" class="btn btn-primary">Saiba mais</a>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <aside class="sidebar">
+            <div class="alert alert-success">
+                <strong>Impacto em 2026:</strong> Mais de 1.200 computadores entregues!
+            </div>
+            <h2>Como Ajudar?</h2>
+            <p>Sua doação de equipamentos usados faz toda a diferença.</p>
             <ul>
-                <li><strong>+1.200</strong> PCs doados;</li>
-                <li><strong>+3.500</strong> alunos formados.</li>
+                <li>Doe computadores e peças</li>
+                <li>Seja instrutor voluntário</li>
+                <li>Divulgue nossos pontos de coleta</li>
             </ul>
-        </section>
+        </aside>
     </main>
+
     <footer>
-        <section aria-labelledby="t-contato">
-            <h2 id="t-contato">Contato</h2>
-            <address>
-                <p><strong>Endereço:</strong> Av. Social da Tecnologia, 1000 — Brasília - DF</p>
-                <p><strong>E-mail:</strong> <a href="mailto:contato@techsolidaria.org">contato@techsolidaria.org</a></p>
-            </address>
-        </section>
-        <p>&copy; 2026 ONG Tech Solidária.</p>
+        <div class="container">
+            <p>&copy; 2026 ONG Tech Solidária — Todos os direitos reservados.</p>
+        </div>
     </footer>
+
 </body>
 </html>

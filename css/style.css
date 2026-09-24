@@ -1,5 +1,43 @@
 /* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E MENSURAÇÃO (RESET)
+   1. DESIGN SYSTEM (VARIÁVEIS CSS)
+   ========================================================================== */
+:root {
+    /* Cores Institucionais */
+    --color-primary: #0d6efd;
+    --color-primary-hover: #0b5ed7;
+    --color-secondary: #198754;
+    --color-secondary-hover: #146c43;
+    
+    /* Neutros & Superfícies */
+    --color-bg-main: #f8f9fa;
+    --color-bg-card: #ffffff;
+    --color-text-main: #212529;
+    --color-text-muted: #495057;
+    --color-border: #ced4da;
+    --color-focus: #ffc107;
+    
+    /* Tipografia */
+    --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-size-base: 1rem;
+    --font-size-h1: clamp(1.75rem, 4vw, 2.5rem);
+    --font-size-h2: clamp(1.35rem, 3vw, 1.75rem);
+    --font-size-h3: 1.25rem;
+    
+    /* Espaçamentos e Bordas */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    
+    /* Sombras e Transições */
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition-fast: 0.2s ease-in-out;
+}
+
+/* ==========================================================================
+   2. RESET & ACESSIBILIDADE
    ========================================================================== */
 * {
     margin: 0;
@@ -8,243 +46,353 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
     line-height: 1.6;
-    color: #333333;
-    background-color: #f8f9fa;
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+}
+
+/* Foco Visível para Acessibilidade (WCAG 2.1 AA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
 }
 
 /* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO
+   3. ARQUITETURA DE LAYOUT (CSS GRID MACRO - 12 COLUNAS)
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--space-sm);
+    padding-left: var(--space-sm);
+}
+
+main.grid-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-md);
+}
+
+.content-main { grid-column: span 12; }
+.sidebar      { grid-column: span 12; }
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+}
+
+/* ==========================================================================
+   4. NAVEGAÇÃO & CABEÇALHO (FLEXBOX)
    ========================================================================== */
 header {
-    background-color: #ffffff;
-    border-bottom: 2px solid #e9ecef;
-    padding: 1rem 2rem;
+    background-color: var(--color-bg-card);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-sm) 0;
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
 
-header img {
-    max-width: 200px;
-    height: auto;
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--color-primary);
 }
 
-nav ul {
+.nav-list {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    gap: var(--space-sm);
 }
 
-nav a {
+.nav-list a {
     text-decoration: none;
-    color: #0d6efd;
-    font-weight: bold;
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s;
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-nav a:hover,
-nav a[aria-current="page"] {
-    background-color: #0d6efd;
+.nav-list a:hover,
+.nav-list a[aria-current="page"] {
+    background-color: var(--color-primary);
     color: #ffffff;
 }
 
+/* Ajuste e Correção de Cor para Botões dentro do Menu */
+.nav-list .btn-primary {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.nav-list .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff !important;
+}
+
+/* Submenu Dropdown */
+.has-dropdown { position: relative; }
+
+.nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-bg-card);
+    box-shadow: var(--shadow-card);
+    min-width: 200px;
+    list-style: none;
+    padding: var(--space-xs) 0;
+    border-radius: var(--radius-sm);
+    z-index: 1000;
+}
+
+.has-dropdown:hover .nav-dropdown,
+.has-dropdown:focus-within .nav-dropdown {
+    display: block;
+}
+
+.nav-dropdown a {
+    display: block;
+    color: var(--color-text-main);
+}
+
 /* ==========================================================================
-   3. CONTEÚDO PRINCIPAL E SEÇÕES (LAYOUT)
+   5. COMPONENTES VISUAIS, BOTÕES E CARDS
    ========================================================================== */
-main {
-    flex: 1;
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
 section, article, aside {
-    background: #ffffff;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background: var(--color-bg-card);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--space-md);
 }
 
-h1, h2, h3 {
-    color: #212529;
-    margin-bottom: 1rem;
-}
-
-h1 {
-    font-size: 2rem;
-    color: #0d6efd;
-}
-
-h2 {
-    font-size: 1.5rem;
-    border-bottom: 2px solid #0d6efd;
-    padding-bottom: 0.5rem;
-}
-
-p {
-    margin-bottom: 1rem;
-}
+h1 { font-size: var(--font-size-h1); color: var(--color-primary); margin-bottom: var(--space-sm); }
+h2 { font-size: var(--font-size-h2); border-bottom: 2px solid var(--color-primary); padding-bottom: var(--space-xs); margin-bottom: var(--space-sm); }
+h3 { font-size: var(--font-size-h3); margin-bottom: var(--space-xs); }
 
 /* Mídias e Imagens */
-figure {
-    margin: 1.5rem 0;
-    text-align: center;
-}
-
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
+    display: block;
 }
 
-figcaption {
-    font-size: 0.875rem;
-    color: #6c757d;
-    margin-top: 0.5rem;
-    font-style: italic;
-}
+figure { margin: var(--space-sm) 0; text-align: center; }
+figcaption { font-size: 0.875rem; color: var(--color-text-muted); font-style: italic; margin-top: var(--space-xs); }
 
-/* Botões e Links de Ação (CTA) */
-a[href="cadastro.html"] {
-    display: inline-block;
-    background-color: #198754;
-    color: #ffffff;
+/* Estilização Geral de Botões e Pseudo-classes */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-base);
+    font-weight: 600;
     text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 0.5rem;
-}
-
-a[href="cadastro.html"]:hover {
-    background-color: #146c43;
-}
-
-/* ==========================================================================
-   4. FORMULÁRIOS (cadastro.html)
-   ========================================================================== */
-fieldset {
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-legend {
-    font-weight: bold;
-    color: #0d6efd;
-    padding: 0 0.5rem;
-}
-
-label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 0.25rem;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-select,
-textarea {
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
-}
-
-button {
-    background-color: #0d6efd;
-    color: #ffffff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 4px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    margin-right: 0.5rem;
+    transition: background-color var(--transition-fast), 
+                border-color var(--transition-fast), 
+                box-shadow var(--transition-fast), 
+                transform var(--transition-fast);
 }
 
-button:hover {
-    background-color: #0b5ed7;
+.btn-primary { 
+    background-color: var(--color-primary); 
+    color: #ffffff; 
 }
 
-button[type="reset"] {
-    background-color: #6c757d;
+.btn-primary:hover { 
+    background-color: var(--color-primary-hover); 
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.25);
 }
 
-button[type="reset"]:hover {
-    background-color: #5c636a;
+.btn-secondary { 
+    background-color: var(--color-secondary); 
+    color: #ffffff; 
+}
+
+.btn-secondary:hover { 
+    background-color: var(--color-secondary-hover); 
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 8px rgba(25, 135, 84, 0.25);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.btn:disabled {
+    background-color: var(--color-border);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+    opacity: 0.65;
 }
 
 /* ==========================================================================
-   5. RODAPÉ INSTITUCIONAL
+   6. COMPONENTES DE FEEDBACK (BADGES, ALERTAS, TOASTS E MODAIS)
    ========================================================================== */
+/* Badges (Etiquetas Semânticas) */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+}
+
+.badge-primary { background-color: rgba(13, 110, 253, 0.15); color: var(--color-primary); }
+.badge-success { background-color: rgba(25, 135, 84, 0.15); color: var(--color-secondary); }
+.badge-warning { background-color: rgba(255, 193, 7, 0.2); color: #856404; }
+
+/* Alertas Contextuais */
+.alert {
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+}
+
+.alert-success { background-color: #d1e7dd; border-color: #badbcc; color: #0f5132; }
+.alert-danger  { background-color: #f8d7da; border-color: #f5c2c7; color: #842029; }
+
+/* Toasts (Notificações Flutuantes) */
+.toast {
+    position: fixed;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    background-color: var(--color-text-main);
+    color: #ffffff;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    z-index: 1100;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1200;
+}
+
+.modal-content {
+    background-color: var(--color-bg-card);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    max-width: 500px;
+    width: 90%;
+    box-shadow: var(--shadow-card);
+}
+
+/* ==========================================================================
+   7. FORMULÁRIOS & VALIDAÇÃO VISUAL
+   ========================================================================== */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bg-card);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+    outline: none;
+}
+
+.form-control:not(:placeholder-shown):valid {
+    border-color: #198754;
+}
+
+.form-control:not(:placeholder-shown):invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+/* Rodapé Institucional */
 footer {
-    background-color: #212529;
+    background-color: var(--color-text-main);
     color: #ffffff;
-    padding: 2rem;
+    padding: var(--space-md) 0;
     margin-top: auto;
-}
-
-footer h2 {
-    color: #ffffff;
-    border-color: #6c757d;
-}
-
-footer address p {
-    margin-bottom: 0.5rem;
-}
-
-footer a {
-    color: #6ea8fe;
-}
-
-footer p:last-child {
     text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.875rem;
-    color: #adb5bd;
 }
 
 /* ==========================================================================
-   6. RESPONSIVIDADE (DISPOSITIVOS MÓVEIS)
+   8. BREAKPOINTS RESPONSIVOS (@MEDIA QUERIES)
    ========================================================================== */
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
+@media (min-width: 576px) {
+    .card-item { grid-column: span 6; }
+}
 
-    nav ul {
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .nav-list {
+        display: none;
         flex-direction: column;
-        gap: 0.5rem;
         width: 100%;
+        margin-top: var(--space-sm);
     }
+    .nav-list.is-active { display: flex; }
+    .nav-dropdown { position: static; box-shadow: none; padding-left: var(--space-md); }
+}
 
-    nav a {
-        display: block;
-        text-align: center;
-    }
+@media (min-width: 992px) {
+    .content-main { grid-column: span 8; }
+    .sidebar      { grid-column: span 4; }
+    .card-item    { grid-column: span 6; }
 }

@@ -3,50 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conheça os projetos sociais da ONG Tech Solidária.">
-    <title>Projetos | ONG Tech Solidária</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Projetos sociais de inclusão digital e recondicionamento de hardware da ONG Tech Solidária.">
+    <title>Projetos — ONG Tech Solidária</title>
+    
+    <!-- Link para a folha de estilos -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
+    <!-- Cabeçalho e Navegação -->
     <header>
-        <img src="assets/img/logo-tech-solidaria.svg" alt="Logotipo ONG Tech Solidária" width="200" height="40">
-        <nav aria-label="Navegação Principal">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projetos.html" aria-current="page">Projetos</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-            </ul>
-        </nav>
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/img/logo-tech-solidaria.svg" alt="Logotipo da ONG Tech Solidária" width="180" height="50">
+            </a>
+
+            <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menu de navegação">&#9776;</button>
+
+            <nav id="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="projetos.html" aria-current="page">Projetos <span aria-hidden="true">▾</span></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="projetos.html#reconecta">Projeto Reconecta</a></li>
+                            <li><a href="projetos.html#letramento">Oficinas digitais</a></li>
+                            <li><a href="projetos.html#elixo">Estação E-Lixo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="cadastro.html" class="btn btn-primary">Seja Voluntário / Doe</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section aria-labelledby="t-proj">
-            <h1 id="t-proj">Nossos Projetos Sociais</h1>
-            <article>
-                <figure>
-                    <img src="assets/img/projeto-reconecta.jpg" alt="Técnico efetuando manutenção em PC doado" width="600" height="350">
-                </figure>
-                <h2>Projeto Reconecta: Hardware</h2>
-                <p>Recuperamos PCs doados e instalamos softwares livres para doação.</p>
-                <a href="cadastro.html">Quero Doar Equipamento</a>
-            </article>
-            <article>
-                <figure>
-                    <img src="assets/img/oficinas-letramento.jpg" alt="Instrutor ensinando informática para aluna" width="600" height="350">
-                </figure>
-                <h2>Oficinas de Letramento Digital</h2>
-                <p>Aulas gratuitas de navegação segura e lógica de programação.</p>
-                <a href="cadastro.html">Quero ser Voluntário</a>
-            </article>
+
+    <!-- Conteúdo Principal dos Projetos -->
+    <main class="container" style="padding-top: var(--space-md); padding-bottom: var(--space-md);">
+        
+        <section style="margin-bottom: var(--space-lg);">
+            <h1>Nossos Projetos Sociais</h1>
+            <p>Conheça as iniciativas da ONG Tech Solidária voltadas para democratizar o acesso à tecnologia e promover o descarte sustentável de resíduos eletrônicos.</p>
         </section>
+
+        <!-- Grade de Projetos (CSS Grid) -->
+        <div class="card-grid">
+
+            <!-- Projeto 1: Reconecta -->
+            <article id="reconecta" class="card-item card-project">
+                <span class="badge badge-success">Ativo</span>
+                <h2>Projeto Reconecta</h2>
+                <p>Recebemos doações de computadores, notebooks e componentes usados de empresas e pessoas físicas. Nossa equipe de voluntários realiza a manutenção, recondicionamento e instalação de softwares educativos livres.</p>
+                <p><strong>Público Impactado:</strong> Escolas públicas e centros comunitários da região.</p>
+                <a href="cadastro.html" class="btn btn-primary" style="margin-top: var(--space-xs);">Quero Doar Computador</a>
+            </article>
+
+            <!-- Projeto 2: Letramento Digital -->
+            <article id="letramento" class="card-item card-project">
+                <span class="badge badge-warning">Inscrições Abertas</span>
+                <h2>Letramento Digital</h2>
+                <p>Oferecemos oficinas presenciais gratuitas de informática básica, navegação segura na internet, ferramentas de escritório e introdução à lógica de programação para jovens e idosos.</p>
+                <p><strong>Público Impactado:</strong> Comunitários em busca de capacitação para o mercado de trabalho.</p>
+                <a href="cadastro.html" class="btn btn-primary" style="margin-top: var(--space-xs);">Seja Instrutor Voluntário</a>
+            </article>
+
+            <!-- Projeto 3: Estação E-Lixo -->
+            <article id="elixo" class="card-item card-project">
+                <span class="badge badge-primary">Sustentabilidade</span>
+                <h2>Estação E-Lixo</h2>
+                <p>Pontos de coleta seletiva para equipamentos eletrônicos sem possibilidade de reuso. O material é descartado corretamente em parceria com cooperativas de reciclagem homologadas, prevenindo a poluição ambiental.</p>
+                <p><strong>Público Impactado:</strong> Sociedade civil e meio ambiente.</p>
+                <a href="cadastro.html" class="btn btn-secondary" style="margin-top: var(--space-xs);">Encontrar Ponto de Coleta</a>
+            </article>
+
+        </div>
+
     </main>
+
+    <!-- Rodapé -->
     <footer>
-        <section aria-labelledby="t-contato">
-            <h2 id="t-contato">Contato</h2>
-            <address>
-                <p><strong>E-mail:</strong> <a href="mailto:contato@techsolidaria.org">contato@techsolidaria.org</a></p>
-            </address>
-        </section>
-        <p>&copy; 2026 ONG Tech Solidária.</p>
+        <div class="container">
+            <p>&copy; 2026 ONG Tech Solidária — Todos os direitos reservados.</p>
+        </div>
     </footer>
+
 </body>
 </html>
